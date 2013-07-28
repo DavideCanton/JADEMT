@@ -1,0 +1,22 @@
+<expression> ::= <term> [ OR <term> ] *
+<term> ::= <fact> [ AND <fact> ] *
+<fact> ::= NOT <fact> | OPAR <expression> CPAR | STRING EQ ( AID [ COMMA AID ] | DATE | STRING ) | ALL
+
+ALL ::= *
+AID ::= STRING AT ( CHAR | DOT ) + [ COLON NUM ] [ "/JADE" ]
+CHAR ::= \w
+STRING ::= CHAR+
+COLON ::= :
+NUM ::= 0-9+
+DOT ::= .
+EQ ::= =
+AND ::= &
+OR ::= |
+NOT ::= !
+DATE ::= OBRACE NUM CBRACE
+OPAR ::= (
+CPAR ::= )
+OBRACE ::= {
+CBRACE ::= }
+COMMA ::= ,
+AT ::= @
