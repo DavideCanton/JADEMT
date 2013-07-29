@@ -5,6 +5,7 @@ import java.util.*;
 import jade.*;
 import jade.core.*;
 import jade.lang.acl.*;
+import jade.mtbuilder.visitor.*;
 
 /**
  * Node representing a leaf in the tree.
@@ -120,6 +121,12 @@ public class LeafNode extends MTTreeNode
 	}
 
 	@Override
+	public void accept(MTVisitor visitor)
+	{
+		visitor.visit(this);
+	}
+
+	@Override
 	public String toString()
 	{
 		if (name != null)
@@ -128,12 +135,24 @@ public class LeafNode extends MTTreeNode
 			return "ALL";
 	}
 
+	public String getName()
+	{
+		return name;
+	}
+
+	public String getRepr()
+	{
+		return repr;
+	}
+
 	private String getVal(Object o)
 	{
 		if (o instanceof Date)
 			return DateFormat.getDateInstance().format((Date) o);
 		if (o instanceof AID[])
 			return Arrays.toString((AID[]) o);
+		if (o instanceof Integer)
+			return MTUtils.getName((Integer) o);
 		return o.toString();
 	}
 }

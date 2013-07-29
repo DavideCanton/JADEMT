@@ -1,6 +1,7 @@
 package jade.mtbuilder.tree;
 
 import jade.lang.acl.*;
+import jade.mtbuilder.visitor.*;
 
 /**
  * Operator that represents the logical OR of two {@link MessageTemplate}s.
@@ -24,5 +25,11 @@ public class OrOperator extends Operator
 	public MessageTemplate evaluate()
 	{
 		return MessageTemplate.or(getLeft().evaluate(), getRight().evaluate());
+	}
+	
+	@Override
+	public void accept(MTVisitor visitor)
+	{
+		visitor.visit(this);
 	}
 }

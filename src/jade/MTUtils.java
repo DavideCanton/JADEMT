@@ -4,6 +4,7 @@ import jade.core.*;
 import jade.lang.acl.*;
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Utilities for Message Templates Building.
@@ -61,6 +62,22 @@ public final class MTUtils
 	public static Integer getValue(String name)
 	{
 		return constants.get(name);
+	}
+
+	/**
+	 * Returns the name of the constant field in class {@link ACLMessage} with field value
+	 * <code>value</code> or <code>null</code> if value is not present.
+	 * 
+	 * @param value
+	 *            The value of the constant.
+	 * @return The name associated to the value or null if value not present.
+	 */
+	public static String getName(Integer value)
+	{
+		for (Entry<String, Integer> e : constants.entrySet())
+			if (e.getValue().equals(value))
+				return e.getKey();
+		return null;
 	}
 
 	/**

@@ -143,12 +143,14 @@ public class Parser
 
 	public static void main(String[] args)
 	{
-		Lex lex = new Lex("Performative = REQUEST | (Performative = INFORM & Ontology = Sguo)");
+		Lex lex = new Lex("Performative = REQUEST | (Performative = INFORM & Ontology = Sguo) | Ontology = Gni");
 		Parser p = new Parser();
 		p.setLex(lex);
 		try
 		{
-			p.parse();
+			MTTreeNode mtnode = p.parse();
+			System.out.println(mtnode);
+			System.out.println(mtnode.evaluate());
 		}
 		catch (IOException exc)
 		{

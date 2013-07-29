@@ -1,6 +1,7 @@
 package jade.mtbuilder.tree;
 
 import jade.lang.acl.*;
+import jade.mtbuilder.visitor.*;
 
 /**
  * Represents a generic node of the tree. After the tree is built, invoke <code>evaluate</code> on
@@ -85,4 +86,12 @@ public abstract class MTTreeNode
 	 * @return The {@link MessageTemplate} represented by the tree.
 	 */
 	public abstract MessageTemplate evaluate();
+
+	/**
+	 * Receives a visitor.
+	 * 
+	 * @param visitor
+	 *            The {@link MTVisitor}.
+	 */
+	public abstract void accept(MTVisitor visitor);
 }
